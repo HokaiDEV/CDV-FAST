@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neumorphic UI Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Neumorphic UI</h1>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Cartão</h2>
+        <p>Elemento com aparência esculpida na mesma superfície do fundo.</p>
+        <div class="row">
+          <button class="btn">Padrão</button>
+          <button class="btn btn-raised">Realçado</button>
+          <button class="btn btn-pressed">Pressionado</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Formulário</h2>
+        <label class="label" for="nome">Nome</label>
+        <input id="nome" class="input" placeholder="Digite seu nome"/>
+        <label class="label" for="email">Email</label>
+        <input id="email" class="input" placeholder="voce@empresa.com"/>
+        <div class="row">
+          <button class="btn">Cancelar</button>
+          <button class="btn btn-raised">Salvar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Toggle</h2>
+        <label class="switch">
+          <input type="checkbox"/>
+          <span class="slider"></span>
+          <span class="switch-label">Ativo</span>
+        </label>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('mousedown', (e) => {
+      if (e.target.classList && e.target.classList.contains('btn')) {
+        e.target.classList.add('is-pressed');
+      }
+    });
+    document.addEventListener('mouseup', () => {
+      document.querySelectorAll('.btn.is-pressed').forEach(b => b.classList.remove('is-pressed'));
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        const el = document.activeElement;
+        if (el && el.classList && el.classList.contains('btn')) {
+          el.classList.add('is-pressed');
+        }
+      }
+    });
+    document.addEventListener('keyup', () => {
+      document.querySelectorAll('.btn.is-pressed').forEach(b => b.classList.remove('is-pressed'));
+    });
+  </script>
+</body>
+</html>
+<html lang=pt-BR>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content=width=device-width,
