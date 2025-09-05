@@ -1,0 +1,162 @@
+:root{
+  --surface:#e0e0e0; /* fundo claro monocromático */
+  --text:#4a4a4a;
+  --muted:#6f6f6f;
+  --radius:16px;
+  --shadow-light: rgba(255,255,255,0.85);
+  --shadow-dark: rgba(163,177,198,0.6);
+  --depth-1: 6px;
+  --depth-2: 10px;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: var(--surface);
+  color: var(--text);
+}
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:40px 24px;
+}
+h1{
+  font-size:24px;
+  margin:0 0 24px;
+  font-weight:700;
+}
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:24px;
+}
+
+/* Cards com relevo suave (extrudado) */
+.card{
+  border-radius: var(--radius);
+  padding:24px;
+  background: var(--surface);
+  box-shadow:
+    calc(var(--depth-1) * -1) calc(var(--depth-1) * -1) 12px var(--shadow-light),
+    var(--depth-1) var(--depth-1) 12px var(--shadow-dark);
+}
+.card h2{ margin:0 0 12px; font-size:18px; }
+.card p{ margin:0 0 16px; color: var(--muted); }
+
+.label{
+  display:block;
+  font-size:12px;
+  margin:10px 0 6px;
+  color: var(--muted);
+}
+
+/* Inputs com aparência entalhada (inset) */
+.input{
+  width:100%;
+  padding:12px 14px;
+  border:none;
+  outline:none;
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow:
+    inset calc(var(--depth-1) * -1) calc(var(--depth-1) * -1) 10px var(--shadow-light),
+    inset var(--depth-1) var(--depth-1) 10px var(--shadow-dark);
+}
+.input:focus{
+  box-shadow:
+    inset calc(var(--depth-2) * -1) calc(var(--depth-2) * -1) 14px var(--shadow-light),
+    inset var(--depth-2) var(--depth-2) 14px var(--shadow-dark);
+}
+
+.row{ display:flex; gap:12px; margin-top:16px; flex-wrap: wrap; }
+
+/* Botões esculpidos da mesma superfície */
+.btn{
+  -webkit-tap-highlight-color: transparent;
+  appearance:none;
+  user-select:none;
+  cursor:pointer;
+  border:none;
+  outline:none;
+  padding:12px 18px;
+  border-radius: 14px;
+  color: var(--text);
+  background: var(--surface);
+  transition: box-shadow .15s ease, transform .04s ease;
+  box-shadow:
+    calc(var(--depth-1) * -1) calc(var(--depth-1) * -1) 10px var(--shadow-light),
+    var(--depth-1) var(--depth-1) 10px var(--shadow-dark);
+}
+.btn:hover{
+  box-shadow:
+    calc(var(--depth-2) * -1) calc(var(--depth-2) * -1) 14px var(--shadow-light),
+    var(--depth-2) var(--depth-2) 14px var(--shadow-dark);
+}
+.btn:focus-visible{ outline: 2px solid rgba(0,0,0,0.04); outline-offset: 2px; }
+
+/* Variação levemente mais elevada (ainda monocromática) */
+.btn-raised{
+  box-shadow:
+    calc(var(--depth-2) * -1) calc(var(--depth-2) * -1) 14px var(--shadow-light),
+    var(--depth-2) var(--depth-2) 14px var(--shadow-dark);
+}
+
+/* Estado pressionado (entalhado) */
+.btn.is-pressed, .btn:active, .btn.btn-pressed{
+  transform: translateY(1px);
+  box-shadow:
+    inset calc(var(--depth-1) * -1) calc(var(--depth-1) * -1) 10px var(--shadow-light),
+    inset var(--depth-1) var(--depth-1) 10px var(--shadow-dark);
+}
+
+/* Switch neumórfico */
+.switch{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 12px;
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow:
+    calc(var(--depth-1) * -1) calc(var(--depth-1) * -1) 10px var(--shadow-light),
+    var(--depth-1) var(--depth-1) 10px var(--shadow-dark);
+}
+.switch input{ display:none; }
+.slider{
+  position: relative;
+  width:52px;
+  height:28px;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow:
+    inset calc(var(--depth-1) * -1) calc(var(--depth-1) * -1) 10px var(--shadow-light),
+    inset var(--depth-1) var(--depth-1) 10px var(--shadow-dark);
+}
+.slider::after{
+  content: "";
+  position:absolute;
+  top:4px; left:4px;
+  width:20px; height:20px;
+  border-radius:50%;
+  background: var(--surface);
+  transition: transform .2s ease;
+  box-shadow:
+    calc(var(--depth-1) * -1) calc(var(--depth-1) * -1) 10px var(--shadow-light),
+    var(--depth-1) var(--depth-1) 10px var(--shadow-dark);
+}
+.switch input:checked + .slider::after{ transform: translateX(24px); }
+.switch-label{ font-size:14px; color: var(--muted); }
+
+/* Dark mode opcional mantendo estética */
+@media (prefers-color-scheme: dark){
+  :root{
+    --surface:#1e1f24;
+    --text:#e5e7eb;
+    --muted:#9aa1aa;
+    --shadow-light: rgba(255,255,255,0.06);
+    --shadow-dark: rgba(0,0,0,0.55);
+  }
+}
