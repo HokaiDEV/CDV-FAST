@@ -8,7 +8,17 @@
 </head>
 <body>
   <main class="container">
-    <h1>Neumorphic UI</h1>
+    <nav class="navbar">
+      <div class="nav-surface nav-title">Neumorphic UI</div>
+      <div class="nav-actions nav-surface">
+        <span class="switch-label">Tema</span>
+        <label class="switch">
+          <input type="checkbox" id="themeToggle"/>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </nav>
+    <h1>Componentes</h1>
 
     <section class="grid">
       <div class="card">
@@ -41,6 +51,43 @@
           <span class="switch-label">Ativo</span>
         </label>
       </div>
+
+      <div class="card">
+        <h2>Checkbox & Radio</h2>
+        <div class="row">
+          <label class="control">
+            <input type="checkbox" checked>
+            <span class="checkbox" aria-hidden="true"></span>
+            <span>Receber alertas</span>
+          </label>
+          <label class="control">
+            <input type="radio" name="r1" checked>
+            <span class="radio" aria-hidden="true"></span>
+            <span>Opção A</span>
+          </label>
+          <label class="control">
+            <input type="radio" name="r1">
+            <span class="radio" aria-hidden="true"></span>
+            <span>Opção B</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Segmented</h2>
+        <div class="segmented" role="group" aria-label="Filtros">
+          <button class="segment" aria-pressed="true">Hoje</button>
+          <button class="segment">Semana</button>
+          <button class="segment">Mês</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Range Slider</h2>
+        <div class="range">
+          <input type="range" min="0" max="100" value="40" id="rangeDemo">
+        </div>
+      </div>
     </section>
   </main>
 
@@ -63,6 +110,25 @@
     });
     document.addEventListener('keyup', () => {
       document.querySelectorAll('.btn.is-pressed').forEach(b => b.classList.remove('is-pressed'));
+    });
+
+    // Dark mode toggle via data-theme
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      if (themeToggle) themeToggle.checked = true;
+    }
+    themeToggle?.addEventListener('change', (e) => {
+      const isDark = e.target.checked;
+      if (isDark) {
+        root.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        root.removeAttribute('data-theme');
+        localStorage.removeItem('theme');
+      }
     });
   </script>
 </body>

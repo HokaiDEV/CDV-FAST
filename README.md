@@ -22,9 +22,23 @@ Classes principais:
 - `.input`: campo de entrada entalhado
 - `.switch` / `.slider`: toggle neumórfico
 
+Componentes adicionais:
+- Checkbox/Radio com relevo entalhado
+- Segmented control com estados pressionados
+- Range slider com trilho entalhado e thumb em relevo
+
+Utilitários:
+- `.neu-out-1`, `.neu-out-2`: relevo externo (profundidade 1/2)
+- `.neu-in-1`, `.neu-in-2`: entalhe interno (profundidade 1/2)
+- `.r-8`, `.r-12`, `.r-16`: raios auxiliares de borda
+
 Customização via variáveis CSS (em `:root`):
 - `--surface`, `--text`, `--muted`
 - `--radius`, `--shadow-light`, `--shadow-dark`, `--depth-1`, `--depth-2`
 
 Acessibilidade:
 - Focus visível em botões; suporte a teclado (Barra de espaço/Enter simulam pressionar)
+
+Dark mode:
+- Alternância via atributo em `:root[data-theme="dark"]`
+- Toggle no topo (navbar) persiste preferência em `localStorage`
